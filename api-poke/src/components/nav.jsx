@@ -1,18 +1,22 @@
 import "../components/css/nav.css";
 
-const Nav = ({ searchTerm, setSearchTerm }) => {
+const Nav = ({ searchTerm, setSearchTerm, randomPokemon }) => {
   return (
     <div className="search">
       <input
         type="text"
-        placeholder="Search Pokémon by name or number"
+        placeholder="Procure por nome ou número"
         className="search-input"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
 
-      <button className="random-button" title="Sortear um Pokémon aleatório">
-        Random Pokémon
+      <button
+        className="random-button"
+        title="10% de chance de aparecer uma forma alternativa!"
+        onClick={randomPokemon}
+      >
+        Pokémon Aleatório
       </button>
     </div>
   );

@@ -13,11 +13,11 @@
   border: 1px solid #ccc;
   border-radius: 6px;
   padding: 10px 15px;
-  font-size: 1rem;
+  font-size: 1.5rem;
   cursor: pointer;
   transition: background-color 0.2s;
   margin-bottom: 20px;
-  font-weight: 600;
+  font-weight: bold;
 }
 
 .back-button:hover {
@@ -64,6 +64,29 @@
   object-fit: contain;
 }
 
-.details-general p {
-  line-height: 1.6;
+h2 {
+  text-align: center;
+  margin: 15px 0;
+
+}
+
+.details-main-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.details{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.types {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.data {
+  text-align: center;
 }

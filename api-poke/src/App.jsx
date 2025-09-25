@@ -18,6 +18,19 @@ function App() {
     setSelectedPokemon(null);
   };
 
+  const randomPokemon = () => {
+    let randomId;
+    
+    if (Math.random() < 0.9) {
+     randomId = Math.floor(Math.random() * 1025) + 1;
+    } else {
+      randomId = Math.floor(Math.random() * (10277 - 10001 + 1)) + 10001;
+    }
+  
+    setSearchTerm(String(randomId));
+    setSelectedPokemon(null);
+  };
+
   return (
     <>
       <Header />
@@ -26,7 +39,11 @@ function App() {
           <Pokemon pokemon={selectedPokemon} onBack={handleBackToList} />
         ) : (
           <>
-            <Nav searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+            <Nav
+              searchTerm={searchTerm}
+              setSearchTerm={setSearchTerm} 
+              randomPokemon={randomPokemon}
+            />
             <Pokedex
               searchTerm={searchTerm}
               onSelectPokemon={handleSelectPokemon}

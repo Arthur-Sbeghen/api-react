@@ -34,10 +34,12 @@ const Pokemon = ({ pokemon, onBack }) => {
 
   const data = details || pokemon;
 
+  console.log(data);
+
   return (
     <div className="pokemon-details">
       <button className="back-button" onClick={onBack}>
-        &#x2190; Voltar para a Lista
+        &#x2190;
       </button>
 
       <div className="details-header">
@@ -57,25 +59,28 @@ const Pokemon = ({ pokemon, onBack }) => {
             alt={data.name}
             className="details-img"
           />
+          <img
+            src={data.sprites?.front_shiny}
+          />
+          <img
+            src={data.sprites?.back_shiny}
+          />
         </div>
-        <div className="details-types">
+        <div className="details">
           <h2>Tipos</h2>
-          {data.types.map((t) => (
-            <span key={t.type.name} className={`type-pill type-${t.type.name}`}>
-              {t.type.name}
-            </span>
-          ))}
+          <div className="types">
+            {data.types.map((t) => (
+              <span key={t.type.name} className={`type-pill type-${t.type.name}`}>
+                {t.type.name}
+              </span>
+            ))}
+          </div>
+          <h2>Informações Gerais</h2>
+          <div className="data"> 
+            <p>Altura: {data.height} m</p>
+            <p>Peso: {data.weight} kg</p>
+          </div>
         </div>
-      </div>
-
-      <div className="details-general">
-        <h2>Informações Gerais</h2>
-        <p>Altura: {(data.height / 10).toFixed(1)} m</p>
-        <p>Peso: {(data.weight / 10).toFixed(1)} kg</p>
-        <p>
-          Habilidades:
-          {data.abilities.map((a) => a.ability.name).join(", ")}
-        </p>
       </div>
     </div>
   );

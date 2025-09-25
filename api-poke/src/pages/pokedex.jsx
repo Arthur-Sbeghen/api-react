@@ -52,20 +52,25 @@ const Pokedex = ({ searchTerm, onSelectPokemon }) => {
     }
 
     const timer = setTimeout(async () => {
+      const query = searchTerm.trim().toLowerCase();
+    
+      if (!query) {
+        setSearchResult(null);
+        return;
+      }
+    
       try {
         const res = await axios.get(
-          `https://pokeapi.co/api/v2/pokemon/${searchTerm.toLowerCase()}`
+          `https://pokeapi.co/api/v2/pokemon/${query}`
         );
+    
         if (res.status === 200) {
           setSearchResult({
             id: res.data.id,
             name: res.data.name,
-            sprite:
-              res.data.sprites?.other?.["official-artwork"]?.front_default,
+            sprite: res.data.sprites?.other?.["official-artwork"]?.front_default,
             types: res.data.types.map((t) => t.type.name),
           });
-        } else {
-          setSearchResult(null);
         }
       } catch {
         setSearchResult(null);
@@ -88,7 +93,7 @@ const Pokedex = ({ searchTerm, onSelectPokemon }) => {
   };
 
   const lastPage = () => {
-    setOffset(1185 - limit);
+    setOffset(1302 - limit);
   };
 
   const handleCardClick = (pokemonData) => {
@@ -110,9 +115,7 @@ const Pokedex = ({ searchTerm, onSelectPokemon }) => {
           >
             <div className="card-badge">
               #
-              {String(searchResult.id).length < 3
-                ? String(searchResult.id).padStart(4, "0")
-                : searchResult.id}
+              {String(searchResult.id).padStart(4, "0")}
             </div>
             <div className="card-img-container">
               <img
@@ -144,9 +147,7 @@ const Pokedex = ({ searchTerm, onSelectPokemon }) => {
               >
                 <div className="card-badge">
                   #
-                  {String(p.id).length < 3
-                    ? String(p.id).padStart(4, "0")
-                    : p.id}
+                  {String(p.id).padStart(4, "0")}
                 </div>
                 <div className="card-img-container">
                   <img
